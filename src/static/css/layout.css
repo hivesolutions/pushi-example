@@ -50,3 +50,8 @@ h1 {
     padding: 8px 12px 8px 12px;
     text-align: left;
 }
+
+.footer {
+	margin: 12px 0px 12px 0px;
+	font-size: 14px;
+}

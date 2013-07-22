@@ -9,5 +9,10 @@
     <body>
         <h1>Pushi Example</h1>
         <div class="console"></div>
+        <div class="footer">
+        	{% if session.username %}
+        		logged in as <strong>{{ session.username }}</strong> 
+        	{% endif %}
+        </div>
     </body>
 </html>
