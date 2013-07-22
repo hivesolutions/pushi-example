@@ -154,7 +154,8 @@ Pushi.prototype.subscribePrivate = function(channel) {
 
         self.sendEvent("pusher:subscribe", {
                     channel : channel,
-                    auth : result.auth
+                    auth : result.auth,
+                    channel_data : result.channel_data
                 });
     };
     request.send();
