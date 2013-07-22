@@ -46,6 +46,7 @@ h1 {
     color: #ffffff;
     font-family: monospace;
     height: 480px;
+    overflow-y: scroll;
     padding: 8px 12px 8px 12px;
     text-align: left;
 }

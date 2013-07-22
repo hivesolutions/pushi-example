@@ -39,7 +39,7 @@ jQuery(document).ready(function() {
                     });
 
             pushi.bind("connect", function(event) {
-                        log("connected");
+                        log("connected := " + this.socketId);
                     });
 
             pushi.bind("disconnect", function(event) {
