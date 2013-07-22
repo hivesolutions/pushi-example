@@ -64,6 +64,14 @@ jQuery(document).ready(function() {
                         log("subscribed := " + channel);
                     });
 
+            pushi.bind("member_added", function(event, channel, member) {
+                        log("member_added := " + channel + ":" + member);
+                    });
+
+            pushi.bind("member_removed", function(event, channel, member) {
+                        log("member_removed := " + channel + ":" + member);
+                    });
+
             pushi.bind("message", function(event, data) {
                         log("message := " + data);
                     });
