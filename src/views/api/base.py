@@ -51,8 +51,8 @@ def auth():
     channel = quorum.get_field("channel_name")
     socket_id = quorum.get_field("socket_id")
 
-    signature = pushi.authenticate(channel, socket_id)
+    auth = pushi.authenticate(channel, socket_id)
 
     return dict(
-        signature = signature
+        auth = auth
     )
