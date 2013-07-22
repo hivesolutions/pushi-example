@@ -41,6 +41,20 @@ h1 {
     font-weight: normal;
 }
 
+a {
+    color: #3668c6;
+    text-decoration: none;
+}
+
+a.active {
+    font-weight: bold;
+}
+
+a:hover {
+    border-bottom: 1px solid #3668c6;
+    padding-bottom: 2px;
+}
+
 .console {
     background-color: #2d2d2d;
     color: #ffffff;
@@ -52,6 +66,7 @@ h1 {
 }
 
 .footer {
-	margin: 12px 0px 12px 0px;
-	font-size: 14px;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 16px 0px 16px 0px;
 }

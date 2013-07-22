@@ -10,9 +10,12 @@
         <h1>Pushi Example</h1>
         <div class="console"></div>
         <div class="footer">
-        	{% if session.username %}
-        		logged in as <strong>{{ session.username }}</strong> 
-        	{% endif %}
+            {% if session.username %}
+                <div>logged in as <strong>{{ session.username }}</strong></div>
+                <div><a href="{{ url_for('logout') }}">logout</a></div>
+            {% else %}
+                <div><a href="{{ url_for('login') }}">login</a></div>
+            {% endif %}
         </div>
     </body>
 </html>
