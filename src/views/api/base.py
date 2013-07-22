@@ -41,14 +41,18 @@ import pushi
 
 from pushi_example import app
 from pushi_example import flask
+from pushi_example import quorum
 
 @app.route("/auth", methods = ("GET",), json = True)
 def auth():
     is_active = flask.session.get("active", False)
     if not is_active: raise RuntimeError("User is not authenticated")
 
-    #pushi.authenticate(channel, socket_id)
-        
-    #return dict(
-    #    signature: 
-    #)
+    channel = quorum.get_field("channel_name")
+    socket_id = quorum.get_field("socket_id")
+
+    signature = pushi.authenticate(channel, socket_id)
+
+    return dict(
+        signature = signature
+    )
