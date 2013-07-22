@@ -36,3 +36,13 @@ __copyright__ = "Copyright (c) 2008-2012 Hive Solutions Lda."
 
 __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
+
+from pushi_example import app
+from pushi_example import flask
+
+@app.route("/", methods = ("GET",))
+@app.route("/index", methods = ("GET",))
+def index():
+    return flask.render_template(
+        "index.html.tpl"
+    )
