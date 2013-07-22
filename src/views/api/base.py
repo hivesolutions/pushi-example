@@ -37,10 +37,18 @@ __copyright__ = "Copyright (c) 2008-2012 Hive Solutions Lda."
 __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
+import pushi
+
 from pushi_example import app
+from pushi_example import flask
 
 @app.route("/auth", methods = ("GET",), json = True)
 def auth():
-    return dict(
-        token = "asdasdasd"
-    )
+    is_active = flask.session.get("active", False)
+    if not is_active: raise RuntimeError("User is not authenticated")
+
+    #pushi.authenticate(channel, socket_id)
+        
+    #return dict(
+    #    signature: 
+    #)
