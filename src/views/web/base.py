@@ -46,3 +46,17 @@ def index():
     return flask.render_template(
         "index.html.tpl"
     )
+
+@app.route("/login", methods = ("GET",))
+def login():
+    flask.session["active"] = True
+    return flask.redirect(
+        flask.url_for("index")
+    )
+
+@app.route("/logout", methods = ("GET",))
+def logout():
+    del flask.session["active"]
+    return flask.redirect(
+        flask.url_for("index")
+    )
