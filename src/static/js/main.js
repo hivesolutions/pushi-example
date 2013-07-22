@@ -45,7 +45,7 @@ var log = function(message) {
 };
 
 jQuery(document).ready(function() {
-            var pushi = new Pushi("app_key", {
+            var pushi = new Pushi("c62cd4e8-ea4b-4109-8406-3b68626738a6", {
                         authEndpoint : ""
                     });
 

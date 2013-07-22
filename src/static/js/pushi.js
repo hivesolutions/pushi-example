@@ -24,12 +24,14 @@
 // __license__   = GNU General Public License (GPL), Version 3
 
 var Pushi = function(appKey, options) {
-    var URL = "ws://localhost:9090/";
+    var BASE_URL = "ws://localhost:9090/";
     var self = this;
+
+    this.url = BASE_URL + appKey
 
     this.appKey = appKey;
     this.options = options || {};
-    this.socket = new WebSocket(URL);
+    this.socket = new WebSocket(this.url);
     this.socketId = null;
     this.state = "disconnected";
     this.events = {};
