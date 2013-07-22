@@ -1,0 +1,3 @@
+[submodule "src/quorum"]
+	path = src/quorum
+	url = https://github.com/hivesolutions/flask_quorum_bin.git
