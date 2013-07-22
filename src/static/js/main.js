@@ -23,12 +23,23 @@
 // __copyright__ = Copyright (c) 2010-2012 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
 
+var getDate = function() {
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+
+    var hoursS = (hours < 10 ? "0" : "") + String(hours);
+    var minutesS = (minutes < 10 ? "0" : "") + String(minutes);
+    var secondsS = (seconds < 10 ? "0" : "") + String(seconds);
+
+    return hoursS + ":" + minutesS + ":" + secondsS;
+};
+
 var log = function(message) {
     var console = jQuery("body > .console");
 
-    var date = new Date();
-    var dateString = date.getHours() + ":" + date.getMinutes() + ":"
-            + date.getSeconds();
+    var dateString = getDate();
     var messageHtml = jQuery("<div>" + dateString + " " + message + "</div>");
     console.append(messageHtml);
 };
