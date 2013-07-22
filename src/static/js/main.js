@@ -52,7 +52,8 @@ jQuery(document).ready(function() {
             pushi.bind("connect", function(event) {
                         log("connected := " + this.socketId);
                         this.subscribe("global");
-                        this.subscribe("private-tobias");
+                        this.subscribe("private-privado");
+                        this.subscribe("presence-presenca");
                     });
 
             pushi.bind("disconnect", function(event) {
