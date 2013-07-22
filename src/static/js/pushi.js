@@ -8,7 +8,8 @@ var Pushi = function(appKey, options) {
     this.socketId = null;
     this.state = "disconnected";
     this.events = {};
-    this.authEndpoint = options.authEndpoint;
+
+    this.authEndpoint = this.options.authEndpoint;
 
     this.socket.onopen = function() {
     };
@@ -88,12 +89,6 @@ Pushi.prototype.sendEvent = function(event, data) {
     this.send(json);
 };
 
-if (typeof String.prototype.startsWith != "function") {
-    String.prototype.startsWith = function(string) {
-        return this.slice(0, string.length) == string;
-    };
-}
-
 Pushi.prototype.subscribe = function(channel) {
     var isPrivate = channel.startsWith("private-");
     if (isPrivate) {
@@ -106,15 +101,24 @@ Pushi.prototype.subscribe = function(channel) {
 };
 
 Pushi.prototype.subscribePrivate = function(channel) {
-	if(!this.authEndpoint) {
-		throw "No auth endpoint defined";
-	}
-	
-	var request = new XMLHttpRequest();
-	request.open("GET", "demo_get.asp", true);
-	request.send();
-	
-	this.authEndpoint
-	
-	
+    if (!this.authEndpoint) {
+        throw "No auth endpoint defined";
+    }
+
+    var request = new XMLHttpRequest();
+    request.open("get", this.authEndpoint, true);
+    request.onreadystatechange = function() {
+        if (request.readyState != 4) {
+        	return;
+        }
+        
+        alert(request.responseText);
+    };
+    request.send();
 };
+
+if (typeof String.prototype.startsWith != "function") {
+    String.prototype.startsWith = function(string) {
+        return this.slice(0, string.length) == string;
+    };
+}
