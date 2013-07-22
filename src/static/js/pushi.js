@@ -120,7 +120,8 @@ Pushi.prototype.sendEvent = function(event, data) {
 };
 
 Pushi.prototype.subscribe = function(channel) {
-    var isPrivate = channel.startsWith("private-");
+    var isPrivate = channel.startsWith("private-")
+            || channel.startsWith("presence-");
     if (isPrivate) {
         return this.subscribePrivate(channel);
     }
