@@ -136,9 +136,11 @@ Pushi.prototype.subscribePrivate = function(channel) {
     }
 
     var self = this;
+    var query = "?socket_id=" + this.socketId + "&channel=" + channel;
+    var url = this.authEndpoint + query;
 
     var request = new XMLHttpRequest();
-    request.open("get", this.authEndpoint, true);
+    request.open("get", url, true);
     request.onreadystatechange = function() {
         if (request.readyState != 4) {
             return;

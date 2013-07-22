@@ -48,7 +48,7 @@ def auth():
     is_active = flask.session.get("active", False)
     if not is_active: raise RuntimeError("User is not authenticated")
 
-    channel = quorum.get_field("channel_name")
+    channel = quorum.get_field("channel")
     socket_id = quorum.get_field("socket_id")
 
     auth = pushi.authenticate(channel, socket_id)
