@@ -39,6 +39,7 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 from pushi_example import app
 from pushi_example import flask
+from pushi_example import quorum
 
 @app.route("/", methods = ("GET",))
 @app.route("/index", methods = ("GET",))
@@ -49,7 +50,9 @@ def index():
 
 @app.route("/login", methods = ("GET",))
 def login():
+    username = quorum.get_field("username", "anonymous")
     flask.session["active"] = True
+    flask.session["username"] = username
     return flask.redirect(
         flask.url_for("index")
     )
@@ -57,6 +60,7 @@ def login():
 @app.route("/logout", methods = ("GET",))
 def logout():
     del flask.session["active"]
+    del flask.session["username"]
     return flask.redirect(
         flask.url_for("index")
     )
