@@ -46,11 +46,13 @@ var log = function(message) {
 
 jQuery(document).ready(function() {
             var pushi = new Pushi("c62cd4e8-ea4b-4109-8406-3b68626738a6", {
-                        authEndpoint : ""
+                        authEndpoint : "http://localhost:5000/auth"
                     });
 
             pushi.bind("connect", function(event) {
                         log("connected := " + this.socketId);
+                        this.subscribe("global");
+                        this.subscribe("private-tobias");
                     });
 
             pushi.bind("disconnect", function(event) {

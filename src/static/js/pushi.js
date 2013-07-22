@@ -35,6 +35,7 @@ var Pushi = function(appKey, options) {
     this.socketId = null;
     this.state = "disconnected";
     this.events = {};
+    this.auths = {}
 
     this.authEndpoint = this.options.authEndpoint;
 
@@ -84,7 +85,6 @@ Pushi.prototype.unbind = function(event, method) {
 };
 
 Pushi.prototype.onoconnect = function() {
-    this.subscribe("global");
     this.trigger("connect");
 };
 
@@ -135,6 +135,8 @@ Pushi.prototype.subscribePrivate = function(channel) {
         throw "No auth endpoint defined";
     }
 
+    var self = this;
+
     var request = new XMLHttpRequest();
     request.open("get", this.authEndpoint, true);
     request.onreadystatechange = function() {
@@ -142,7 +144,15 @@ Pushi.prototype.subscribePrivate = function(channel) {
             return;
         }
 
-        alert(request.responseText);
+        var result = JSON.parse(request.responseText);
+        if (!result.auth) {
+            return;
+        }
+
+        self.sendEvent("pusher:subscribe", {
+                    channel : channel,
+                    auth : result.auth
+                });
     };
     request.send();
 };
