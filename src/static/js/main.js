@@ -42,6 +42,9 @@ var log = function(message) {
     var dateString = getDate();
     var messageHtml = jQuery("<div>" + dateString + " " + message + "</div>");
     console.append(messageHtml);
+
+    var _console = console[0];
+    _console.scrollTop = _console.scrollHeight;
 };
 
 jQuery(document).ready(function() {
