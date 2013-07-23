@@ -74,7 +74,8 @@ jQuery(document).ready(function() {
 
             pushi.bind("message", function(event, data) {
                         log("message := " + data);
-                        this.global.trigger("echo", this.socketId + ":" + data);
+                        this.global.trigger("echo", this.socketId + " := "
+                                        + data);
                     });
 
             pushi.bind("echo", function(event, data) {
