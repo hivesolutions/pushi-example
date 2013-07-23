@@ -23,6 +23,15 @@
 // __copyright__ = Copyright (c) 2010-2012 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
 
+var Channel = function(pushi, name) {
+    this.pushi = pushi;
+    this.name = name;
+};
+
+Channel.prototype.trigger = function(event, data) {
+    this.pushi.sendChannel(event, data, this.name);
+};
+
 var Pushi = function(appKey, options) {
     var BASE_URL = "ws://localhost:9090/";
     var self = this;
@@ -135,6 +144,15 @@ Pushi.prototype.sendEvent = function(event, data) {
     this.send(json);
 };
 
+Pushi.prototype.sendChannel = function(event, data, channel) {
+    var json = {
+        event : event,
+        data : data,
+        channel : channel
+    };
+    this.send(json);
+};
+
 Pushi.prototype.subscribe = function(channel) {
     var isPrivate = channel.startsWith("private-")
             || channel.startsWith("presence-");
@@ -145,6 +163,9 @@ Pushi.prototype.subscribe = function(channel) {
     this.sendEvent("pusher:subscribe", {
                 channel : channel
             });
+
+    var channel = new Channel(this, channel);
+    return channel;
 };
 
 Pushi.prototype.subscribePrivate = function(channel) {
