@@ -48,40 +48,45 @@ var log = function(message) {
 };
 
 jQuery(document).ready(function() {
-            var pushi = new Pushi("c62cd4e8-ea4b-4109-8406-3b68626738a6", {
-                        authEndpoint : "http://localhost:5000/auth"
-                    });
+    var pushi = new Pushi(
+            "274cb7377bdfd1f18eabe6eb7b43879ad821ce13d3c1a9400590fc0fe58ebd31",
+            {
+                authEndpoint : "http://localhost:5000/auth"
+            });
 
-            pushi.bind("connect", function(event) {
-                        log("connected := " + this.socketId);
-                        this.global = this.subscribe("global");
-                        this.subscribe("private-privado");
-                        this.subscribe("presence-presenca");
-                    });
+    pushi.bind("connect", function(event) {
+                log("connected := " + this.socketId);
+                this.global = this.subscribe("global");
+                this.subscribe("private-privado");
+                this.subscribe("presence-presenca");
+            });
 
-            pushi.bind("disconnect", function(event) {
-                        log("disconnected");
-                    });
+    pushi.bind("disconnect", function(event) {
+                log("disconnected");
+            });
 
-            pushi.bind("subscribe", function(event, channel) {
-                        log("subscribed := " + channel);
-                    });
+    pushi.bind("subscribe", function(event, channel) {
+                log("subscribed := " + channel);
+            });
 
-            pushi.bind("member_added", function(event, channel, member) {
-                        log("member_added := " + channel + ":" + member);
-                    });
+    pushi.bind("member_added", function(event, channel, member) {
+                log("member_added := " + channel + ":" + member);
+            });
 
-            pushi.bind("member_removed", function(event, channel, member) {
-                        log("member_removed := " + channel + ":" + member);
-                    });
+    pushi.bind("member_removed", function(event, channel, member) {
+                log("member_removed := " + channel + ":" + member);
+            });
 
-            pushi.bind("message", function(event, data) {
-                        log("message := " + data);
-                        this.global.trigger("echo", this.socketId + " := "
-                                        + data);
-                    });
+    pushi.bind("ping", function(event, data) {
+                log("ping := " + data);
+            });
 
-            pushi.bind("echo", function(event, data) {
-                        log("echo := " + data);
-                    });
-        });
+    pushi.bind("message", function(event, data) {
+                log("message := " + data);
+                this.global.trigger("echo", this.socketId + " := " + data);
+            });
+
+    pushi.bind("echo", function(event, data) {
+                log("echo := " + data);
+            });
+});
