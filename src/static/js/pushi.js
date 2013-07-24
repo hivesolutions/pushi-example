@@ -128,7 +128,7 @@ Pushi.prototype.onmessage = function(json) {
             break;
     }
 
-    this.trigger(json.event, json.data);
+    this.trigger(json.event, json.data, json.channel);
 };
 
 Pushi.prototype.send = function(json) {
