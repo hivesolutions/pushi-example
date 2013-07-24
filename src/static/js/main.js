@@ -65,7 +65,7 @@ jQuery(document).ready(function() {
                 log("disconnected");
             });
 
-    pushi.bind("subscribe", function(event, channel) {
+    pushi.bind("subscribe", function(event, channel, data) {
                 log("subscribed := " + channel);
             });
 
@@ -84,7 +84,6 @@ jQuery(document).ready(function() {
     pushi.bind("message", function(event, data, channel) {
                 log("[" + channel + "] message := " + data);
                 this.global.trigger("echo", this.socketId + " := " + data);
-
                 this.sendChannel("echo", data, "peer-presenca:anonymous_joamag");
             });
 
