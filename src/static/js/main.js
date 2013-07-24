@@ -81,12 +81,14 @@ jQuery(document).ready(function() {
                 log("ping := " + data);
             });
 
-    pushi.bind("message", function(event, data) {
-                log("message := " + data);
+    pushi.bind("message", function(event, data, channel) {
+                log("[" + channel + "] message := " + data);
                 this.global.trigger("echo", this.socketId + " := " + data);
+                
+                this.sendChannel("echo", data, "peer-presenca:anonymous_joamag");
             });
 
-    pushi.bind("echo", function(event, data) {
-                log("echo := " + data);
+    pushi.bind("echo", function(event, data, channel) {
+                log("[" + channel + "] echo := " + data);
             });
 });
