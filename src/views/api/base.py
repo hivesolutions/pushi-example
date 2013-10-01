@@ -45,16 +45,25 @@ from pushi_example import quorum
 
 @app.route("/auth", methods = ("GET",), json = True)
 def auth():
+    # check if the the session is currently active (user logged in)
+    # in case it's not raises an error for the problem
     is_active = flask.session.get("active", False)
     if not is_active: raise RuntimeError("User is not authenticated")
 
+    # retrieves the current username in session, defaulting to
+    # anonymous in case no username is currently in session
     username = flask.session.get("username", "anonymous")
 
+    # retrieves both the channel and the socket id information
+    # from the provided field parameters, these values are going
+    # to be used in the authentication process
     channel = quorum.get_field("channel")
     socket_id = quorum.get_field("socket_id")
 
+    # authenticates the provided socket id in the provided channel
+    # retrieving the token for authentication and returning a message
+    # containing both the authentication token and the user info
     auth = pushi.authenticate(channel, socket_id)
-
     return dict(
         auth = auth,
         channel_data = dict(
