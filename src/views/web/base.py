@@ -69,7 +69,15 @@ def logout():
 
 @app.route("/create", methods = ("GET",))
 def create():
-    pass
+    name = quorum.get_field("name", "example")
+
+    proxy = pushi.Pushi()
+    proxy.create(
+        name = name
+    )
+    return flask.render_template(
+        "success.html.tpl"
+    )
 
 @app.route("/notification", methods = ("GET",))
 def notification():
