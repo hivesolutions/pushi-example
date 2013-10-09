@@ -38,6 +38,9 @@ var getDate = function() {
 
 var log = function(message) {
     var console = jQuery("body > .console");
+    if (console.length == 0) {
+        return;
+    }
 
     var dateString = getDate();
     var messageHtml = jQuery("<div>" + dateString + " " + message + "</div>");
