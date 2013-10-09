@@ -37,6 +37,8 @@ __copyright__ = "Copyright (c) 2008-2012 Hive Solutions Lda."
 __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
+import pushi
+
 from pushi_example import app
 from pushi_example import flask
 from pushi_example import quorum
@@ -63,4 +65,51 @@ def logout():
     del flask.session["username"]
     return flask.redirect(
         flask.url_for("index")
+    )
+
+@app.route("/create", methods = ("GET",))
+def create():
+    pass
+
+@app.route("/notification", methods = ("GET",))
+def notification():
+    channel = quorum.get_field("channel", "global")
+    message = quorum.get_field("message", "hello world")
+
+    proxy = pushi.Pushi()
+    proxy.trigger(
+        channel = channel,
+        data = message,
+        event = "message"
+    )
+    return flask.render_template(
+        "success.html.tpl"
+    )
+
+@app.route("/subscribe", methods = ("GET",))
+def subscribe():
+    user_id = quorum.get_field("user_id", "anonymous")
+    event = quorum.get_field("event", "global")
+
+    proxy = pushi.Pushi()
+    proxy.subscribe(
+        user_id = user_id,
+        event = event
+    )
+    return flask.render_template(
+        "success.html.tpl"
+    )
+
+@app.route("/unsubscribe", methods = ("GET",))
+def unsubscribe():
+    user_id = quorum.get_field("user_id", "anonymous")
+    event = quorum.get_field("event", "global")
+
+    proxy = pushi.Pushi()
+    proxy.unsubscribe(
+        user_id = user_id,
+        event = event
+    )
+    return flask.render_template(
+        "success.html.tpl"
     )
