@@ -50,7 +50,7 @@ var log = function(message) {
     _console.scrollTop = _console.scrollHeight;
 };
 
-jQuery(document).ready(function() {
+var startPushi = function() {
     var pushi = new Pushi(
             "274cb7377bdfd1f18eabe6eb7b43879ad821ce13d3c1a9400590fc0fe58ebd31",
             {
@@ -93,4 +93,11 @@ jQuery(document).ready(function() {
     pushi.bind("echo", function(event, data, channel) {
                 log("[" + channel + "] echo := " + data);
             });
-});
+};
+
+jQuery(document).ready(function() {
+            var console = jQuery(".console");
+            if (console.length > 0) {
+                startPushi();
+            }
+        });
