@@ -96,8 +96,8 @@ def notification():
 
 @app.route("/subscribe", methods = ("GET",))
 def subscribe():
-    user_id = quorum.get_field("user_id", "anonymous")
     event = quorum.get_field("event", "global")
+    user_id = flask.session.get("username", "anonymous")
 
     proxy = pushi.Pushi()
     proxy.subscribe(
@@ -110,12 +110,44 @@ def subscribe():
 
 @app.route("/unsubscribe", methods = ("GET",))
 def unsubscribe():
-    user_id = quorum.get_field("user_id", "anonymous")
     event = quorum.get_field("event", "global")
+    user_id = flask.session.get("username", "anonymous")
 
     proxy = pushi.Pushi()
     proxy.unsubscribe(
         user_id = user_id,
+        event = event
+    )
+    return flask.render_template(
+        "success.html.tpl"
+    )
+
+@app.route("/subscribe_apn", methods = ("GET",))
+def subscribe_apn():
+    token = quorum.get_field("token")
+    event = quorum.get_field("event", "global")
+
+    if not token: raise RuntimeError("no apn device token provided")
+
+    proxy = pushi.Pushi()
+    auth = proxy.authenticate(event, token)
+    proxy.subscribe_apn(
+        token = token,
+        event = event,
+        auth = auth
+    )
+    return flask.render_template(
+        "success.html.tpl"
+    )
+
+@app.route("/subscribe_apn", methods = ("GET",))
+def unsubscribe_apn():
+    token = quorum.get_field("token")
+    event = quorum.get_field("event", "global")
+
+    proxy = pushi.Pushi()
+    proxy.unsubscribe_apn(
+        token = token,
         event = event
     )
     return flask.render_template(
