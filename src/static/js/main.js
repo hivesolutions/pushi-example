@@ -70,6 +70,7 @@ var startPushi = function() {
 
     pushi.bind("subscribe", function(event, channel, data) {
                 log("subscribed := " + channel);
+                log("data := " + JSON.stringify(data));
             });
 
     pushi.bind("member_added", function(event, channel, member) {
