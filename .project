@@ -3,6 +3,7 @@
 	<name>pushi_example</name>
 	<comment></comment>
 	<projects>
+		<project>pushi</project>
 		<project>quorum</project>
 	</projects>
 	<buildSpec>
