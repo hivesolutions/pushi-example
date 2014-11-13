@@ -1,0 +1,3 @@
+[submodule "src/pushi_example/static/libs/pushi"]
+	path = src/pushi_example/static/libs/pushi
+	url = git@bitbucket.org:hivesolutions/pushi_js.git
