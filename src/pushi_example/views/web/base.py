@@ -39,9 +39,9 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 import pushi
 
-from pushi_example import app
-from pushi_example import flask
-from pushi_example import quorum
+from pushi_example.main import app
+from pushi_example.main import flask
+from pushi_example.main import quorum
 
 @app.route("/", methods = ("GET",))
 @app.route("/index", methods = ("GET",))
