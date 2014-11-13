@@ -54,7 +54,7 @@ var startPushi = function() {
     var pushi = new Pushi(
             "274cb7377bdfd1f18eabe6eb7b43879ad821ce13d3c1a9400590fc0fe58ebd31",
             {
-                authEndpoint : "http://localhost:5000/auth"
+                authEndpoint : "/auth"
             });
 
     pushi.bind("connect", function(event) {
