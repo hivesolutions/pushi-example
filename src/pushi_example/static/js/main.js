@@ -58,8 +58,8 @@ var startPushi = function() {
     pushiKey = pushiKey.length > 0 ? pushiKey.text() : null;
 
     var pushi = new Pushi(pushiKey, {
-                authEndpoint : "/auth",
-                baseUrl : pushiUrl
+                baseUrl : pushiUrl,
+                authEndpoint : "/auth"
             });
 
     pushi.bind("connect", function(event) {
