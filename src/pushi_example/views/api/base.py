@@ -67,7 +67,7 @@ def auth():
     return dict(
         auth = auth,
         channel_data = dict(
-            user_id  = username,
+            user_id = username,
             username = username,
             peer = True
         )
