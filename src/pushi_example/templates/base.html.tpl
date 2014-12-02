@@ -17,5 +17,9 @@
                 <div><a href="{{ url_for('login') }}">login</a></div>
             {% endif %}
         </div>
+        <div class="hidden">
+            <div class="pushi-url">{{ base_url|default("", True) }}</div>
+            <div class="pushi-key">{{ app_key|default("", True) }}</div>
+        </div>
     </body>
 </html>
