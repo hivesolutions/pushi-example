@@ -72,7 +72,7 @@ def create():
     name = quorum.get_field("name", "example")
 
     proxy = pushi.Api()
-    proxy.create(
+    proxy.create_app(
         name = name
     )
     return flask.render_template(
