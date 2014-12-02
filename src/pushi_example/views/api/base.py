@@ -63,7 +63,7 @@ def auth():
     # authenticates the provided socket id in the provided channel
     # retrieving the token for authentication and returning a message
     # containing both the authentication token and the user info
-    auth = pushi.Pushi().authenticate(channel, socket_id)
+    auth = pushi.Api().authenticate(channel, socket_id)
     return dict(
         auth = auth,
         channel_data = dict(
