@@ -51,10 +51,15 @@ var log = function(message) {
 };
 
 var startPushi = function() {
-    var pushi = new Pushi(
-            "274cb7377bdfd1f18eabe6eb7b43879ad821ce13d3c1a9400590fc0fe58ebd31",
-            {
-                authEndpoint : "/auth"
+    var _body = jQuery("body");
+    var pushiUrl = jQuery(".pushi-url", _body);
+    var pushiKey = jQuery(".pushi-key", _body);
+    pushiUrl = pushiUrl.length > 0 ? pushiUrl.text() : null;
+    pushiKey = pushiKey.length > 0 ? pushiKey.text() : null;
+
+    var pushi = new Pushi(pushiKey, {
+                authEndpoint : "/auth",
+                baseUrl : pushiUrl
             });
 
     pushi.bind("connect", function(event) {
