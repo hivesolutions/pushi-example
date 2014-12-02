@@ -89,7 +89,7 @@ def notification():
     message = quorum.get_field("message", "hello world")
 
     proxy = pushi.Api()
-    proxy.trigger(
+    proxy.trigger_event(
         channel = channel,
         data = message,
         event = "message"
