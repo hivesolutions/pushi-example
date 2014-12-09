@@ -99,6 +99,8 @@ var startPushi = function() {
     pushi.bind("echo", function(event, data, channel) {
                 log("[" + channel + "] echo := " + data);
             });
+
+    _body.data("pushi", pushi);
 };
 
 jQuery(document).ready(function() {
