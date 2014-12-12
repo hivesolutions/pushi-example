@@ -46,7 +46,7 @@ from pushi_example.main import quorum
 @app.route("/", methods = ("GET",))
 @app.route("/index", methods = ("GET",))
 def index():
-    base_url = quorum.conf("PUSHI_WS_URL")
+    base_url = quorum.conf("PUSHI_WS_URL", pushi.BASE_WS_URL)
     app_key = quorum.conf("PUSHI_KEY")
     return flask.render_template(
         "index.html.tpl",
