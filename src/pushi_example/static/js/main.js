@@ -92,7 +92,7 @@ var startPushi = function() {
 
     pushi.bind("message", function(event, data, channel) {
                 log("[" + channel + "] message := " + data);
-                this.global.trigger("echo", this.socketId + " := " + data);
+                this.global.send("echo", this.socketId + " := " + data);
                 this.sendChannel("echo", data, "presence-presenca");
             });
 
