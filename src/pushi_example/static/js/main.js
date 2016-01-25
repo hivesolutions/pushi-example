@@ -58,54 +58,54 @@ var startPushi = function() {
     pushiKey = pushiKey.length > 0 ? pushiKey.text() : null;
 
     var pushi = new Pushi(pushiKey, {
-                baseUrl : pushiUrl,
-                authEndpoint : "/auth"
-            });
+        baseUrl: pushiUrl,
+        authEndpoint: "/auth"
+    });
 
     pushi.bind("connect", function(event) {
-                log("connected := " + this.socketId);
-                this.global = this.subscribe("global");
-                this.subscribe("private-privado");
-                this.subscribe("presence-presenca");
-            });
+        log("connected := " + this.socketId);
+        this.global = this.subscribe("global");
+        this.subscribe("private-privado");
+        this.subscribe("presence-presenca");
+    });
 
     pushi.bind("disconnect", function(event) {
-                log("disconnected");
-            });
+        log("disconnected");
+    });
 
     pushi.bind("subscribe", function(event, channel, data) {
-                log("subscribed := " + channel);
-                log("data := " + JSON.stringify(data));
-            });
+        log("subscribed := " + channel);
+        log("data := " + JSON.stringify(data));
+    });
 
     pushi.bind("member_added", function(event, channel, member) {
-                log("member_added := " + channel + ":" + member);
-            });
+        log("member_added := " + channel + ":" + member);
+    });
 
     pushi.bind("member_removed", function(event, channel, member) {
-                log("member_removed := " + channel + ":" + member);
-            });
+        log("member_removed := " + channel + ":" + member);
+    });
 
     pushi.bind("ping", function(event, data) {
-                log("ping := " + data);
-            });
+        log("ping := " + data);
+    });
 
     pushi.bind("message", function(event, data, channel) {
-                log("[" + channel + "] message := " + data);
-                this.global.send("echo", this.socketId + " := " + data);
-                this.sendChannel("echo", data, "presence-presenca");
-            });
+        log("[" + channel + "] message := " + data);
+        this.global.send("echo", this.socketId + " := " + data);
+        this.sendChannel("echo", data, "presence-presenca");
+    });
 
     pushi.bind("echo", function(event, data, channel) {
-                log("[" + channel + "] echo := " + data);
-            });
+        log("[" + channel + "] echo := " + data);
+    });
 
     _body.data("pushi", pushi);
 };
 
 jQuery(document).ready(function() {
-            var console = jQuery(".console");
-            if (console.length > 0) {
-                startPushi();
-            }
-        });
+    var console = jQuery(".console");
+    if (console.length > 0) {
+        startPushi();
+    }
+});
