@@ -38,7 +38,7 @@ var getDate = function() {
 
 var log = function(message) {
     var console = jQuery("body > .console");
-    if (console.length == 0) {
+    if (console.length === 0) {
         return;
     }
 
