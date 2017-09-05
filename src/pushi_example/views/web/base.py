@@ -75,7 +75,7 @@ def logout():
 def create():
     name = quorum.get_field("name", "example")
 
-    proxy = pushi.Api()
+    proxy = pushi.API()
     proxy.create_app(
         name = name
     )
@@ -88,7 +88,7 @@ def notification():
     channel = quorum.get_field("channel", "global")
     message = quorum.get_field("message", "hello world")
 
-    proxy = pushi.Api()
+    proxy = pushi.API()
     proxy.trigger_event(
         channel = channel,
         data = message,
@@ -103,7 +103,7 @@ def subscribe():
     event = quorum.get_field("event", "global")
     user_id = flask.session.get("username", "anonymous")
 
-    proxy = pushi.Api()
+    proxy = pushi.API()
     proxy.subscribe(
         user_id = user_id,
         event = event
@@ -117,7 +117,7 @@ def unsubscribe():
     event = quorum.get_field("event", "global")
     user_id = flask.session.get("username", "anonymous")
 
-    proxy = pushi.Api()
+    proxy = pushi.API()
     proxy.unsubscribe(
         user_id = user_id,
         event = event
@@ -133,7 +133,7 @@ def subscribe_apn():
 
     if not token: raise RuntimeError("no apn device token provided")
 
-    proxy = pushi.Api()
+    proxy = pushi.API()
     auth = proxy.authenticate(event, token)
     proxy.subscribe_apn(
         token = token,
@@ -149,7 +149,7 @@ def unsubscribe_apn():
     token = quorum.get_field("token")
     event = quorum.get_field("event", "global")
 
-    proxy = pushi.Api()
+    proxy = pushi.API()
     proxy.unsubscribe_apn(
         token = token,
         event = event
