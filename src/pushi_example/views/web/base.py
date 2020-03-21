@@ -131,7 +131,7 @@ def subscribe_apn():
     token = quorum.get_field("token")
     event = quorum.get_field("event", "global")
 
-    if not token: raise RuntimeError("no apn device token provided")
+    if not token: raise RuntimeError("no APN device token provided")
 
     proxy = pushi.API()
     auth = proxy.authenticate(event, token)
